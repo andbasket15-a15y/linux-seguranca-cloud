@@ -1,0 +1,8 @@
+Comandos usados durante o exercício.
+
+pwd - Apresentar nome do diretório corrente.
+mkdir - criar um diretório.
+ls - listar ficheiros do diretório.
+cd - modificar o diretório de trabalho da shell.
+clear - limpar o painel da shell.
+exit - sair da shell.
