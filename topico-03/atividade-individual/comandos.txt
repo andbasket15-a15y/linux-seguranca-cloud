@@ -1,0 +1,47 @@
+# Comandos principais utilizados - Tópico 3 (Ubuntu Server)
+
+## Preparação do repositório e estrutura de pastas
+mkdir -p topico-03/atividade-individual/site
+mkdir -p topico-03/atividade-individual/evidencias
+mkdir -p topico-03/atividade-individual/wordpress
+cd topico-03/atividade-individual
+touch comandos.txt publicacao.md validacao.md
+cd topico-03/atividade-individual/site
+touch index.html style.css sobre.html
+dir
+mv comandos.txt topico-03/atividade-individual
+mv publicacao.md topico-03/atividade-individual
+mv validacao.md topico-03/atividade-individual
+nano index.html
+nano sobre.html
+nano style.css
+tree
+clear
+touch 
+
+## Verificação do Nginx e Firewall
+sudo systemctl status nginx
+sudo ufw status
+
+## Criação da pasta de publicação para o tópico
+sudo mkdir -p /var/www/html/topico-03
+
+## Cópia dos ficheiros do site para o servidor
+sudo cp linux-seguranca-cloud/topico-03/aitividade-individual/site/index.html /var/www/html/topico-03/
+sudo cp sobre.html /var/www/html/topico-03/
+sudo cp style.css /var/www/html/topico-03/
+
+## Permissões
+sudo chown -R www-data:www-data /var/www/html/topico-03
+sudo chmod -R 755 /var/www/html/topico-03
+
+## Validação do serviço
+sudo nginx -t
+curl http://192.168.4.107/topico-03/index.html
+curl http://192.168.4.107/topico-03/sobre.html
+
+## Controlo de versão / GitHub
+git status
+git add .
+git commit -m "atividade topico 03"
+git push

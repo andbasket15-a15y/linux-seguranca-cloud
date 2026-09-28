@@ -1,0 +1,24 @@
+COMANDOS UTILIZADOS - Sessão 2 | Atividade prática individual
+
+=== A1 - Criar a estrutura de trabalho ===
+mkdir - cria directórios e subdirectórios
+cd - entra na pasta da atividade
+touch - cria os três ficheiros comandos-utilizados.txt permissoes.md acesso-remoto.md, ainda vazios
+ls - confirma a estrutura criada
+
+=== A2 - Identificar utilizador e grupos ===
+whoami - finalidade é mostrar o nome do utilizador com que estou a trabalhar
+id - finalidade é mostrar o UID, o GID principal e todos os grupos a que pertenço
+groups - finalidade é listar apenas os nomes dos grupos a que o utilizador atual pertence
+
+=== A3 - Criar ficheiros de teste ===
+mkdir - cria a pasta de teste
+cd - entra na pasta de teste
+touch - criam os três ficheiros de teste
+ls -l - apresenta o estado inicial das permissões de dono, grupo e permissões de cada ficheiro
+
+=== A4 - Aplicar permissões ===
+chmod 644 e 640 atribuir permissões dono lê e escreve, grupo e outros só leem ;e dono lê/escreve, grupo só lê, outros sem acesso
+./script.sh - teste ANTES da permissão de execução mostra falha com "Permission denied" e após execução não apresenta nenhum problema.
+chmod u+x - adiciona a permissão de execução apenas ao dono
+ls -l - apresenta o estado final das permissões
