@@ -1,0 +1,45 @@
+# Comandos principais utilizados - Tópico 4 Trabalho Individual
+
+## Nível 1 - Identificação de serviços, portas e riscos
+sudo systemctl list-units --type=service
+sudo systemctl list-units --type=service --state=running
+sudo systemctl status nginx
+sudo systemctl status ssh
+sudo ss -tulnp
+sudo ss -tulnp | grep -E ':22|:80|:443'
+
+
+## Nível 2 - Firewall (UFW) e validação
+sudo ufw status verbose
+sudo ufw deny 443/tcp
+sudo ufw status verbose
+sudo ufw enable
+sudo ufw status verbose
+curl http://localhost/topico-03/index.html
+curl http://localhost/topico-03/sobre.html
+
+
+## Nível 3 - Hardening inicial
+sudo apt update
+sudo apt upgrade -y
+sudo chown -R www-data:www-data /var/www/html/topico-03
+sudo find /var/www/html/topico-03 -type d -exec chmod 755 {} \;
+sudo find /var/www/html/topico-03 -type f -exec chmod 644 {} \;
+sudo nano /etc/nginx/sites-available/default
+# dentro do bloco "server { ... }", adicionar:
+#     autoindex off;
+sudo nginx -t
+sudo systemctl restart nginx
+sudo nano /etc/fail3ban/jail.local
+sudo lynis audit system
+sudo fail2ban-client status
+sudo systemctl status nginx
+sudo systemctl status fail2ban
+sudo lynis audit system
+
+
+## Controlo de versão / GitHub
+git status
+git add .
+git commit -m "Adiciona atividade individual do topico 04"
+git push
