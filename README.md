@@ -7,6 +7,7 @@ Repositório de atividades do módulo **Linux e Segurança na Cloud**.
 - `topico-02/` — Tópico 2 - Gestão de Identidades e Acessos
 - `topico-03/` — Tópico 3 - Publicação de serviço web em Linux
 - `topico-04/` — Tópico 4 - Segurança e Monitorização
+- `topico-05/` — Tópico 5 - Gestão de Vulnerabilidades e Riscos
 - `produto-final/` — Produto final do Módulo
 
 ## Formando

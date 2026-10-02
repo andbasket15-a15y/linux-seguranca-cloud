@@ -1,0 +1,59 @@
+# Comandos principais utilizados - Tópico 5
+
+## Nível 1 - Monitorização e logs básicos
+uptime
+free -h
+df -h
+sudo systemctl status nginx
+sudo journalctl -n 40
+sudo tail -n 40 /var/log/auth.log
+sudo tail -25 /var/log/syslog
+
+## Nível 2 - Backup e recuperação simples
+mkdir -p ~/backup
+tar -cvpzf ~/backup/backup.tar.gz ~/var/www/html 
+ls ~/backups
+mkdir -p ~/teste
+tar -xvpzf ~/backup/backup.tar.gz -C ~/teste
+ls ~/teste 
+diff -r /var/www/html/ ~/teste/var/www/html
+
+
+# Nível 3 - Plano de continuidade operacional 
+sudo systemctl list-units --type=service --state=critical
+sudo systemctl --failed
+sudo lynis audit system
+sudo grep -E "warning|^suggestion" /var/log/lynis-report.dat
+sudo find / -xdev -type f -4000 -ls 2>/dev/null
+sudo aide --config=/etc/aide/aide.conf --config-check
+sudo aide --config=/etc/aide/aide.conf --check
+systemctl list-unit-files --type=service --state=running
+systemctl list-unit-files --type=service --state=enable
+sudo systemctl status fail2ban
+sudo cat /etc/fail2ban/jail.local
+sudo journalctl -p err -n 20
+sudo journalctl -p warning -n 20
+sudo journalctl -u nginx -n 20
+sudo journalctl -u nginx -p err -n 20
+
+crontab -e
+0 3 * * 0 rsync -a /var/www/html/topico-03/ /home/amestre/backup/topico-03-$(date +\%Y\%m\%d)/ >> /home/amestre/backup/backup.log 2>&1
+ls -lt ~/backup
+cat ~/backup/backup.log
+
+sudo rsync -av --delete ~/backups/topico-03-$(date +%Y%m%d)/ /var/www/html/topico-03/
+sudo chown -R www-data:www-data /var/www/html/topico-03
+sudo find /var/www/html/topico-03 -type d -exec chmod 755 {} \;
+sudo find /var/www/html/topico-0 -type f -exec chmod 644 {} \;
+sudo nginx -t
+sudo systemctl restart nginx
+curl -I http://192.168.4.107/topico-03/index.html
+
+sudo apt update
+sudo apt upgrade -y
+sudo journalctl --vacuum-time=30d
+
+git status
+git add .
+git commit -m "Adiciona atividade individual do topico 05"
+git push
